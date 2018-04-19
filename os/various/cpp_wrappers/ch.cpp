@@ -29,7 +29,7 @@ namespace chibios_rt {
    * chibios_rt::Timer                                                      *
    *------------------------------------------------------------------------*/
 
-  void Timer::setI(systime_t time, vtfunc_t vtfunc, void *par) {
+  void Timer::setI(sysinterval_t time, vtfunc_t vtfunc, void *par) {
 
     chVTSetI(&timer_ref, time, vtfunc, par);
   }
@@ -54,7 +54,7 @@ namespace chibios_rt {
     return chThdSuspendS(&thread_ref);
   }
 
-  msg_t ThreadStayPoint::suspendS(systime_t timeout) {
+  msg_t ThreadStayPoint::suspendS(sysinterval_t timeout) {
 
     return chThdSuspendTimeoutS(&thread_ref, timeout);
   }
@@ -201,7 +201,7 @@ namespace chibios_rt {
     return chThdShouldTerminateX();
   }
 
-  void BaseThread::sleep(systime_t interval){
+  void BaseThread::sleep(sysinterval_t interval){
 
     chThdSleep(interval);
   }
@@ -252,19 +252,19 @@ namespace chibios_rt {
 
 #if CH_CFG_USE_EVENTS_TIMEOUT
   eventmask_t BaseThread::waitOneEventTimeout(eventmask_t ewmask,
-                                              systime_t time) {
+                                              sysinterval_t time) {
 
     return chEvtWaitOneTimeout(ewmask, time);
   }
 
   eventmask_t BaseThread::waitAnyEventTimeout(eventmask_t ewmask,
-                                              systime_t time) {
+                                              sysinterval_t time) {
 
     return chEvtWaitAnyTimeout(ewmask, time);
   }
 
   eventmask_t BaseThread::waitAllEventsTimeout(eventmask_t ewmask,
-                                               systime_t time) {
+                                               sysinterval_t time) {
 
     return chEvtWaitAllTimeout(ewmask, time);
   }
@@ -323,12 +323,12 @@ namespace chibios_rt {
     return chSemWaitS(&sem);
   }
 
-  msg_t CounterSemaphore::wait(systime_t time) {
+  msg_t CounterSemaphore::wait(sysinterval_t time) {
 
     return chSemWaitTimeout(&sem, time);
   }
 
-  msg_t CounterSemaphore::waitS(systime_t time) {
+  msg_t CounterSemaphore::waitS(sysinterval_t time) {
 
     return chSemWaitTimeoutS(&sem, time);
   }
@@ -377,12 +377,12 @@ namespace chibios_rt {
     return chBSemWaitS(&bsem);
   }
 
-  msg_t BinarySemaphore::wait(systime_t time) {
+  msg_t BinarySemaphore::wait(sysinterval_t time) {
 
     return chBSemWaitTimeout(&bsem, time);
   }
 
-  msg_t BinarySemaphore::waitS(systime_t time) {
+  msg_t BinarySemaphore::waitS(sysinterval_t time) {
 
     return chBSemWaitTimeoutS(&bsem, time);
   }
@@ -492,7 +492,7 @@ namespace chibios_rt {
   }
 
 #if CH_CFG_USE_CONDVARS_TIMEOUT
-  msg_t CondVar::wait(systime_t time) {
+  msg_t CondVar::wait(sysinterval_t time) {
 
     return chCondWaitTimeout(&condvar, time);
   }

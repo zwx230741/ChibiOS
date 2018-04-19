@@ -295,7 +295,7 @@ namespace chibios_rt {
      *
      * @iclass
      */
-    inline void setI(systime_t time, vtfunc_t vtfunc, void *par);
+    inline void setI(sysinterval_t time, vtfunc_t vtfunc, void *par);
 
     /**
      * @brief   Resets the timer, if armed.
@@ -364,7 +364,7 @@ namespace chibios_rt {
      *
      * @sclass
      */
-    inline msg_t suspendS(systime_t timeout);
+    inline msg_t suspendS(sysinterval_t timeout);
 
     /**
      * @brief   Resumes the currently referenced thread, if any.
@@ -650,7 +650,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    static void sleep(systime_t interval);
+    static void sleep(sysinterval_t interval);
 
     /**
      * @brief   Suspends the invoking thread until the system time arrives to
@@ -774,7 +774,7 @@ namespace chibios_rt {
      * @api
      */
     static eventmask_t waitOneEventTimeout(eventmask_t ewmask,
-                                           systime_t time);
+                                           sysinterval_t time);
 
     /**
      * @brief   Waits for any of the specified events.
@@ -792,7 +792,7 @@ namespace chibios_rt {
      * @api
      */
     static eventmask_t waitAnyEventTimeout(eventmask_t ewmask,
-                                           systime_t time);
+                                           sysinterval_t time);
 
     /**
      * @brief   Waits for all the specified event flags then clears them.
@@ -809,7 +809,7 @@ namespace chibios_rt {
      * @api
      */
     static eventmask_t waitAllEventsTimeout(eventmask_t ewmask,
-                                            systime_t time);
+                                            sysinterval_t time);
 #endif /* CH_CFG_USE_EVENTS_TIMEOUT */
 
     /**
@@ -1019,7 +1019,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    msg_t wait(systime_t time);
+    msg_t wait(sysinterval_t time);
 
     /**
      * @brief   Performs a wait operation on a semaphore with timeout
@@ -1041,7 +1041,7 @@ namespace chibios_rt {
      *
      * @sclass
      */
-    msg_t waitS(systime_t time);
+    msg_t waitS(sysinterval_t time);
 
     /**
      * @brief   Performs a signal operation on a semaphore.
@@ -1174,7 +1174,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    msg_t wait(systime_t time);
+    msg_t wait(sysinterval_t time);
 
     /**
      * @brief   Wait operation on the binary semaphore.
@@ -1195,7 +1195,7 @@ namespace chibios_rt {
      *
      * @sclass
      */
-    msg_t waitS(systime_t time);
+    msg_t waitS(sysinterval_t time);
 
     /**
      * @brief   Reset operation on the binary semaphore.
@@ -1466,7 +1466,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    msg_t wait(systime_t time);
+    msg_t wait(sysinterval_t time);
 #endif /* CH_CFG_USE_CONDVARS_TIMEOUT */
   };
 #endif /* CH_CFG_USE_CONDVARS */
@@ -1653,7 +1653,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    msg_t post(T msg, systime_t time) {
+    msg_t post(T msg, sysinterval_t time) {
 
       return chMBPostTimeout(&mb, reinterpret_cast<msg_t>(msg), time);
     }
@@ -1676,7 +1676,7 @@ namespace chibios_rt {
      *
      * @sclass
      */
-    msg_t postS(T msg, systime_t time) {
+    msg_t postS(T msg, sysinterval_t time) {
 
       return chMBPostTimeoutS(&mb, reinterpret_cast<msg_t>(msg), time);
     }
@@ -1717,7 +1717,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    msg_t postAhead(T msg, systime_t time) {
+    msg_t postAhead(T msg, sysinterval_t time) {
 
       return chMBPostAheadTimeout(&mb, reinterpret_cast<msg_t>(msg), time);
     }
@@ -1740,7 +1740,7 @@ namespace chibios_rt {
      *
      * @sclass
      */
-    msg_t postAheadS(T msg, systime_t time) {
+    msg_t postAheadS(T msg, sysinterval_t time) {
 
       return chMBPostAheadTimeoutS(&mb, reinterpret_cast<msg_t>(msg), time);
     }
@@ -1781,7 +1781,7 @@ namespace chibios_rt {
      *
      * @api
      */
-    msg_t fetch(T *msgp, systime_t time) {
+    msg_t fetch(T *msgp, sysinterval_t time) {
 
       return chMBFetchTimeout(&mb, reinterpret_cast<msg_t*>(msgp), time);
     }
@@ -1804,7 +1804,7 @@ namespace chibios_rt {
      *
      * @sclass
      */
-    msg_t fetchS(T *msgp, systime_t time) {
+    msg_t fetchS(T *msgp, sysinterval_t time) {
 
       return chMBFetchTimeoutS(&mb, reinterpret_cast<msg_t*>(msgp), time);
     }
