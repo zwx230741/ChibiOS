@@ -481,7 +481,7 @@ typedef stm32_gpio_t * ioportid_t;
  *
  * @notapi
  */
-#define pal_lld_setport(port, bits) ((port)->BSRR.H.set = (uint16_t)(bits))
+#define pal_lld_setport(port, bits) (((ioportid_t)(port))->BSRR.H.set = (uint16_t)(bits))
 
 /**
  * @brief   Clears a bits mask on a I/O port.
@@ -493,7 +493,7 @@ typedef stm32_gpio_t * ioportid_t;
  *
  * @notapi
  */
-#define pal_lld_clearport(port, bits) ((port)->BSRR.H.clear = (uint16_t)(bits))
+#define pal_lld_clearport(port, bits) (((ioportid_t)(port))->BSRR.H.clear = (uint16_t)(bits))
 
 /**
  * @brief   Writes a group of bits.
